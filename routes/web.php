@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
+use App\Models\Department;
+use App\Models\Student;
+use App\Models\Subject;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +21,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('students');
 });
+
+Route::get('/download', [DownloadController::class, 'downloadCsv'])->name('download');
+
+Route::get('/subjects/{department}', [SubjectController::class, 'allSubjects']);
+
+Route::resource('students', StudentController::class);
