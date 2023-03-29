@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+<title>SSL Assessment</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -316,27 +316,20 @@ $(document).ready(function(){
                             
                         </td>
 						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							{{-- <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> --}}
+							<a href="{{route('students.edit', $data->id)}}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<form action="{{ route('students.destroy', ['student' => $data->id])}}" method="POST">
+								@method('delete')
+                            	@csrf
+							<button ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+							</form>
 						</td>
 					</tr>
 					@endforeach
 				</tbody>
 			</table>
 			{!! $students->links() !!}
-			{{-- <div class="clearfix">
-			 <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div> 
-				<ul class="pagination">
-					 <li class="page-item disabled"><a href="#">Previous</a></li>
-					<li class="page-item"><a href="#" class="page-link">1</a></li>
-					<li class="page-item"><a href="#" class="page-link">2</a></li>
-					<li class="page-item active"><a href="#" class="page-link">3</a></li>
-					<li class="page-item"><a href="#" class="page-link">4</a></li>
-					<li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">Next</a></li> 
-					
-				</ul>
-			</div> --}}
+			
 		</div>
 	</div>        
 </div>

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 
 class StudentController extends Controller
 {
@@ -42,19 +45,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        /*
-        "_token" => "IgonWU459Ki5WUSqNU85AGAa2dbDpfV5lvZjUms7"
-        "f_name" => "kjkfjkdkfj"
-        "l_name" => "klkflkgl"
-        "age" => "dfldkfdkl"
-        "departments" => "1"
-        "subject" => array:2 [▼
-        0 => "2"
-        1 => "3"
-        */
         //need validation
-
-        // dd($request->input('subject'));
         $student = Student::create(
             [
                 'first_name' => $request->input('f_name'),
@@ -76,7 +67,6 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
     }
 
     /**
@@ -87,7 +77,9 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        $depts = Department::all();
+
+        return view('editStudent', compact('student', 'depts'));
     }
 
     /**
@@ -109,7 +101,12 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Student $student)
-    {
-        //
+    {   
+        // dd("hell");
+        DB::table('student_subject')->where('student_id', $student->id)->delete();
+        Student::where('id', $student->id)->delete();
+        return redirect()->route('students.index');
+
+
     }
 }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Student;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class StudentSeeder extends Seeder
 {
@@ -12,8 +13,29 @@ class StudentSeeder extends Seeder
      *
      * @return void
      */
+    private $index = 1;
+
     public function run()
     {
-        Student::factory()->count(100000)->create();
+        Student::factory()->count(1000)->create();
+
+        for ($i = 0; $i < 1000; $i++) {
+            $subject_count = rand(1, 3);
+            for ($j = 0; $j < $subject_count; $j++) {
+                DB::table('student_subject')->insert(
+                    [
+                        'student_id' => $this->index,
+                        'subject_id' => rand(1, 10)
+                    ]
+                );
+                // DB::table('student_subject')->insert(
+                //     [
+                //         'student_id' => $this->index,
+                //         'subject_id' => rand(1, 10)
+                //     ]
+                // );
+            }
+            $this->index++;
+        }
     }
 }
