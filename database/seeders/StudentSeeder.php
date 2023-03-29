@@ -17,9 +17,9 @@ class StudentSeeder extends Seeder
 
     public function run()
     {
-        Student::factory()->count(1000)->create();
+        Student::factory()->count(1000000)->create();
 
-        for ($i = 0; $i < 1000; $i++) {
+        for ($i = 0; $i < 1000000; $i++) {
             $subject_count = rand(1, 3);
             for ($j = 0; $j < $subject_count; $j++) {
                 DB::table('student_subject')->insert(
