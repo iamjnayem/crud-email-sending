@@ -29,6 +29,7 @@
                                 <input type="text" class="form-control" name="age" required>
                             </div>
                             <div class="form-group">
+                                <h6>By Selecting Department Subject will be shown automatically</h6>
                                 <label for="departments">Department:</label>
                                 <select name="departments" id="departments" class="p-2" onchange="fetchSubjects()">
                                     <option value="">Choose Your Department</option>
@@ -52,7 +53,7 @@
                 </div>
             </div>
         </div>
-    
+
 @endsection
 
 {{-- @push('subjects') --}}

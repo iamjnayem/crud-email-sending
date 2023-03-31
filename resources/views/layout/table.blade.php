@@ -36,9 +36,12 @@
                 <td>{{$data->age}}</td>
                 <td>{{ $data->department->name }}</td>
                 <td>
-                    @foreach ($data->subjects as $subject)
-                        <li>{{ $subject->name }}</li>
-                    @endforeach
+
+                    @forelse ($data->subjects as $subject)
+                        <li>{{ $subject->name  }}</li>
+                    @empty
+                    <li>Not Assigned</li>
+                    @endforelse
 
 
                 </td>
