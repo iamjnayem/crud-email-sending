@@ -9,7 +9,15 @@ use Maatwebsite\Excel\Facades\Excel;
 class DownloadController extends Controller
 {
     function downloadCsv(){
-        
-        return Excel::download(new StudentExport, 'students.csv');
+
+    //    $file = Excel::store(new StudentExport,'/students.csv');
+
+       (new StudentExport)->queue('student.csv');
+
+       return back()->with('info', 'exporting has started...');
+
+
+
+
     }
 }

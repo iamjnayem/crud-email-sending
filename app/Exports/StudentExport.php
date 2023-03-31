@@ -8,13 +8,16 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\Exportable;
 
 class StudentExport implements ShouldAutoSize, WithMapping, WithHeadings, FromQuery
 {
+
+    use Exportable;
+
     /**
      * @return \Illuminate\Support\Collection
      */
-  
 
     public function map($student): array
     {

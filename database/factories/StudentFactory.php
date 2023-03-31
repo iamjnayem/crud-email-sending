@@ -12,15 +12,15 @@ class StudentFactory extends Factory
      * @return array
      */
 
-    
+
 
     public function definition()
     {
-        
+
         return [
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
-            'age' =>$this->faker->numberBetween(10, 100),
+            'age' =>$this->faker->numberBetween(6, 30),
             'department_id' => $this->faker->numberBetween(1, 10)
         ];
     }
