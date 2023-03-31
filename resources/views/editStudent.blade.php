@@ -273,15 +273,16 @@ $(document).ready(function(){
 						<h2><b>SSL Assesment</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a class='btn btn-success' href="{{route('students.create')}}">
+						{{-- <a class='btn btn-success'>
 							<i class="material-icons">&#xE147;</i> <span> Edit Student</span>
-						</a>
+						</a> --}}
 					</div>
 				</div>
 			</div>
 
             <div class="modal-content">
                 <form method="POST" action="{{route('students.update', $student->id)}}">
+                    @method('PUT')
                     @csrf
                     <div class="modal-header">
                         <h4 class="modal-title">Edit Student</h4>

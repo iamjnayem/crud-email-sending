@@ -94,7 +94,26 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+
+        $id = $request->student->id;
+        $first_name = $request->input('f_name');
+        $last_name = $request->input('l_name');
+        $age = $request->input('age');
+        $department = $request->input('departments');
+        $subjects = $request->input('subject');
+
+        Student::where('id', $id)->update(
+            [
+                'first_name' => $first_name,
+                'last_name'=> $last_name,
+                'age' => $age,
+                'department_id' => $department,
+            ]
+            );
+        $student->subjects()->sync($subjects);
+
+        return redirect()->route('students.index')->with('info', 'student updated successfully');
+
     }
 
     /**
