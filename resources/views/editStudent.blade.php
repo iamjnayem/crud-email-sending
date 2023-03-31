@@ -1,5 +1,5 @@
 @extends('layout.welcome')
-
+@section('title', 'Edit Student')
 @section('content')
 <div class="container-xl">
 	<div class="table-responsive">
