@@ -1,21 +1,10 @@
 @extends('layout.welcome')
 @section('title', 'Edit Student')
 @section('content')
-<div class="container-xl">
+
 	<div class="table-responsive">
 		<div class="table-wrapper">
-			<div class="table-title">
-				<div class="row">
-					<div class="col-sm-6">
-						<h2><b>SSL Assesment</b></h2>
-					</div>
-					<div class="col-sm-6">
-						{{-- <a class='btn btn-success'>
-							<i class="material-icons">&#xE147;</i> <span> Edit Student</span>
-						</a> --}}
-					</div>
-				</div>
-			</div>
+
 
             <div class="modal-content">
                 <form method="POST" action="{{route('students.update', $student->id)}}">
@@ -79,7 +68,7 @@
             </div>
 		</div>
 	</div>
-</div>
+
 
 @endsection
 
