@@ -56,7 +56,8 @@ class StudentController extends Controller
         );
 
        $student->subjects()->sync($request->input('subject'));
-       return redirect()->route('students.index');
+       return redirect()->route('students.index')->with('success', 'student created successfully');
+
     }
 
     /**
@@ -101,7 +102,7 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Student $student)
-    {   
+    {
         // dd("hell");
         DB::table('student_subject')->where('student_id', $student->id)->delete();
         Student::where('id', $student->id)->delete();

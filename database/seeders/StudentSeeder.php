@@ -14,12 +14,12 @@ class StudentSeeder extends Seeder
      * @return void
      */
     private $index = 1;
-
+    private $seed_count = 10;
     public function run()
     {
-        Student::factory()->count(1000000)->create();
+        Student::factory()->count($this->seed_count)->create();
 
-        for ($i = 0; $i < 1000000; $i++) {
+        for ($i = 0; $i <$this->seed_count; $i++) {
             $subject_count = rand(1, 3);
             for ($j = 0; $j < $subject_count; $j++) {
                 DB::table('student_subject')->insert(
