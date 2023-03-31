@@ -78,9 +78,11 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
+        //to show all department
         $depts = Department::all();
 
-        return view('editStudent', compact('student', 'depts'));
+        $subjects = Subject::where('department_id', $student->department->id)->get();
+        return view('editStudent', compact('student', 'depts', 'subjects'));
     }
 
     /**

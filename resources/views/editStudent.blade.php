@@ -28,7 +28,7 @@ body {
 	min-width: 1000px;
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
-.table-title {        
+.table-title {
 	padding-bottom: 15px;
 	background: #435d7d;
 	color: #fff;
@@ -85,7 +85,7 @@ table.table th i {
 	font-size: 13px;
 	margin: 0 5px;
 	cursor: pointer;
-}	
+}
 table.table td:last-child i {
 	opacity: 0.9;
 	font-size: 22px;
@@ -133,11 +133,11 @@ table.table .avatar {
 }
 .pagination li a:hover {
 	color: #666;
-}	
+}
 .pagination li.active a, .pagination li.active a.page-link {
 	background: #03A9F4;
 }
-.pagination li.active a:hover {        
+.pagination li.active a:hover {
 	background: #0397d6;
 }
 .pagination li.disabled i {
@@ -151,12 +151,12 @@ table.table .avatar {
 	float: left;
 	margin-top: 10px;
 	font-size: 13px;
-}    
+}
 /* Custom checkbox */
 .custom-checkbox {
 	position: relative;
 }
-.custom-checkbox input[type="checkbox"] {    
+.custom-checkbox input[type="checkbox"] {
 	opacity: 0;
 	position: absolute;
 	margin: 5px 0 0 3px;
@@ -232,28 +232,28 @@ table.table .avatar {
 .modal .btn {
 	border-radius: 2px;
 	min-width: 100px;
-}	
+}
 .modal form label {
 	font-weight: normal;
-}	
+}
 </style>
 <script>
 $(document).ready(function(){
 	// Activate tooltip
 	$('[data-toggle="tooltip"]').tooltip();
-	
+
 	// Select/Deselect checkboxes
 	var checkbox = $('table tbody input[type="checkbox"]');
 	$("#selectAll").click(function(){
 		if(this.checked){
 			checkbox.each(function(){
-				this.checked = true;                        
+				this.checked = true;
 			});
 		} else{
 			checkbox.each(function(){
-				this.checked = false;                        
+				this.checked = false;
 			});
-		} 
+		}
 	});
 	checkbox.click(function(){
 		if(!this.checked){
@@ -279,22 +279,22 @@ $(document).ready(function(){
 					</div>
 				</div>
 			</div>
-			
+
             <div class="modal-content">
                 <form method="POST" action="{{route('students.update', $student->id)}}">
                     @csrf
-                    <div class="modal-header">						
+                    <div class="modal-header">
                         <h4 class="modal-title">Edit Student</h4>
 						<a href="{{route('students.index')}}">
                         	<button type="button" class="close"  aria-hidden="true">&times;</button>
 						</a>
                     </div>
-                    <div class="modal-body">					
+                    <div class="modal-body">
                         <div class="form-group">
                             <label>First Name</label>
                             <input type="text" class="form-control" name="f_name" value="{{$student->first_name}}" required>
                         </div>
-    
+
                         <div class="form-group">
                             <label>Last Name</label>
                             <input type="text" class="form-control" name="l_name" value="{{$student->last_name}}" required>
@@ -305,7 +305,7 @@ $(document).ready(function(){
                         </div>
                         <div class="form-group">
                             <label for="departments">Department:</label>
-                            
+
                             <select name="departments" id="departments" class="p-2" onchange="fetchSubjects()">
                                 <option value="">Choose Your Department</option>
                                 @foreach($depts as $dept )
@@ -315,13 +315,23 @@ $(document).ready(function(){
                         </div>
 						<label for="subjects"  id="sub-heading">Subjects:</label><br/>
                         <div class="form-group"  id="subject-zone">
-                           @foreach($student->subjects as $key => $value)
-                           <input type="checkbox" id="s1" name="subject[]" value="{{$value->id}}" {{($value->id == $subject)}} >
-                           <label for="s1">{{$value->name}}</label><br> 
-                          
+                            @php
+                                $subject_ids = [];
+                                foreach($student->subjects as $subject){
+                                    $subject_ids[] = $subject->id;
+                                }
+
+                            @endphp
+                           @foreach ($subjects as $subject)
+                                <input type="checkbox" id="s1" name="subject[]" value="{{$subject->id}}"
+                                @if (in_array($subject->id, $subject_ids))
+                                    {{"checked"}}
+                                @endif
+                                >
+                                <label for="s1">{{$subject->name}}</label><br>
                            @endforeach
                         </div>
-                                
+
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -330,7 +340,7 @@ $(document).ready(function(){
                 </form>
             </div>
 		</div>
-	</div>        
+	</div>
 </div>
 
 <script>
@@ -347,7 +357,7 @@ $(document).ready(function(){
 
 			let subjects = data['subjects'];
 			for(let item of subjects){
-				
+
 
 				let checkbox = document.createElement('input')
 				checkbox.type = 'checkbox'
@@ -355,7 +365,7 @@ $(document).ready(function(){
 				checkbox.id = 'sub' + item['id']
 				checkbox.value = item['id']
 
-				
+
 
 				sub.appendChild(checkbox);
 
@@ -372,7 +382,7 @@ $(document).ready(function(){
 			}
 		}
 		)
-		
+
 	}
 </script>
 
