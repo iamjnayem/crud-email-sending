@@ -3,8 +3,10 @@
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-6" >
+                    <a  href="{{route('students.index')}}" style="text-decoration:none; color:white;" type="button">
                     <h2><b>SSL Assesment</b></h2>
+                    </a>
                 </div>
                 <div class="col-sm-6">
                     <a href="{{ route('students.create') }}" class="btn btn-success"><i
