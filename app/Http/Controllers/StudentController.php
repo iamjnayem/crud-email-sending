@@ -22,7 +22,7 @@ class StudentController extends Controller
 
         $students = Student::orderBy('id', 'desc')->paginate(20);
 
-        return view('welcome', compact('students'));
+        return view('layout.table', compact('students'));
     }
 
     /**

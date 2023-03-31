@@ -29,3 +29,7 @@ Route::get('/download', [DownloadController::class, 'downloadCsv'])->name('downl
 Route::get('/subjects/{department}', [SubjectController::class, 'allSubjects']);
 
 Route::resource('students', StudentController::class);
+
+Route::get('/test', function(){
+    return view('layout.welcome');
+});
