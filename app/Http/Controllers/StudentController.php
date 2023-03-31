@@ -103,10 +103,9 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        // dd("hell");
         DB::table('student_subject')->where('student_id', $student->id)->delete();
         Student::where('id', $student->id)->delete();
-        return redirect()->route('students.index');
+        return redirect()->route('students.index')->with('delete', 'student deleted successfully');
 
 
     }

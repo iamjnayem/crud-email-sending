@@ -331,13 +331,13 @@
             </div>
         @endif
 
+        @if ($message = Session::get('delete'))
+        <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                Please check the form below for errors
-            </div>
-        @endif
         <div class="table-responsive">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -401,8 +401,10 @@
                             <form action="{{ route('students.destroy', ['student' => $data->id]) }}" method="POST">
                                 @method('delete')
                                 @csrf
-                                <button><i class="material-icons" data-toggle="tooltip"
-                                        title="Delete">&#xE872;</i></button>
+                                <button style="border: none; background:none;">
+                                <a class="delete"><i class="material-icons" data-toggle="tooltip"
+                                        title="Delete">&#xE872;</i></a>
+                                </button >
                             </form>
                         </td>
                     </tr>
