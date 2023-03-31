@@ -385,7 +385,7 @@
                         </td>
                         <td>{{ $data->id }}</td>
                         <td>{{ $data->first_name }} {{ $data->last_name }}</td>
-                        <td>27</td>
+                        <td>{{$data->age}}</td>
                         <td>{{ $data->department->name }}</td>
                         <td>
                             @foreach ($data->subjects as $subject)
