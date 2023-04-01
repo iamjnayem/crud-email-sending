@@ -64,7 +64,7 @@
 
                             @endphp
                            @foreach ($subjects as $subject)
-                                <input type="checkbox" id="s1" name="subject[]" value="{{$subject->id}}"
+                                <input type="checkbox" id="s1" name="subjects[]" value="{{$subject->id}}"
                                 @if (in_array($subject->id, $subject_ids))
                                     {{"checked"}}
                                 @endif
