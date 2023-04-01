@@ -13,7 +13,7 @@ class StudentSubjectSeeder extends Seeder
      * @return void
      */
 
-    private $seed_count = 100000;
+    private $seed_count = 100;
     public function run()
     {
         StudentSubject::factory()->count($this->seed_count)->create();
