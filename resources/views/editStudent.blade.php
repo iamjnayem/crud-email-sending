@@ -17,29 +17,43 @@
 						</a>
                     </div>
                     <div class="modal-body">
+                        @if ($errors->has('f_name'))
+                            <span class="text-danger">{{ "**".$errors->first('f_name') }}</span>
+                        @endif
                         <div class="form-group">
                             <label>First Name</label>
                             <input type="text" class="form-control" name="f_name" value="{{$student->first_name}}" required>
                         </div>
-
+                        @if ($errors->has('l_name'))
+                            <span class="text-danger">{{ "**".$errors->first('l_name') }}</span>
+                        @endif
                         <div class="form-group">
                             <label>Last Name</label>
                             <input type="text" class="form-control" name="l_name" value="{{$student->last_name}}" required>
                         </div>
+                        @if ($errors->has('age'))
+                            <span class="text-danger">{{ "**".$errors->first('age') }}</span>
+                        @endif
                         <div class="form-group">
                             <label>AGE</label>
                             <input type="text" class="form-control" name="age" value={{$student->age}} required>
                         </div>
+                        @if ($errors->has('department'))
+                            <span class="text-danger">{{ "**".$errors->first('department') }}</span>
+                        @endif
                         <div class="form-group">
                             <label for="departments">Department:</label>
 
-                            <select name="departments" id="departments" class="p-2" onchange="fetchSubjects()">
+                            <select name="department" id="departments" class="p-2" onchange="fetchSubjects()">
                                 <option value="">Choose Your Department</option>
                                 @foreach($depts as $dept )
-                                    <option value="{{$dept->id}}" {{($dept->id == $student->department->id) ? "selected": "disabled"}}>{{$dept->name}}</option>
+                                    <option value="{{$dept->id}}" {{($dept->id == $student->department->id) ? "selected": ""}}>{{$dept->name}}</option>
                                 @endforeach
                             </select>
                         </div>
+                        @if ($errors->has('subjects'))
+                            <span class="text-danger">{{ "**".$errors->first('subjects') }}</span>
+                        @endif
 						<label for="subjects"  id="sub-heading">Subjects:</label><br/>
                         <div class="form-group"  id="subject-zone">
                             @php
@@ -90,7 +104,7 @@
 
 				let checkbox = document.createElement('input')
 				checkbox.type = 'checkbox'
-				checkbox.name = 'subject[]'
+				checkbox.name = 'subjects[]'
 				checkbox.id = 'sub' + item['id']
 				checkbox.value = item['id']
 

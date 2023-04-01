@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Department;
 use App\Models\Student;
 use App\Models\Subject;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\StudentPutRequest;
+use App\Http\Requests\StudentPostRequest;
 
 
 class StudentController extends Controller
@@ -43,19 +45,21 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentPostRequest $request)
     {
-        //need validation
+
+        $validated = $request->validated();
+
         $student = Student::create(
             [
-                'first_name' => $request->input('f_name'),
-                'last_name' => $request->input('l_name'),
-                'age' => $request->input('age'),
-                'department_id' => $request->input('departments')
+                'first_name' => $validated['f_name'],
+                'last_name' => $validated['l_name'],
+                'age' => $validated['age'],
+                'department_id' => $validated['department']
             ]
         );
 
-       $student->subjects()->sync($request->input('subject'));
+       $student->subjects()->sync($validated['subjects']);
        return redirect()->route('students.index')->with('success', 'student created successfully');
 
     }
@@ -92,25 +96,20 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(StudentPutRequest $request, Student $student)
     {
+        $validated = $request->validated();
 
-        $id = $request->student->id;
-        $first_name = $request->input('f_name');
-        $last_name = $request->input('l_name');
-        $age = $request->input('age');
-        $department = $request->input('departments');
-        $subjects = $request->input('subject');
 
-        Student::where('id', $id)->update(
+        Student::where('id', $validated['id'])->update(
             [
-                'first_name' => $first_name,
-                'last_name'=> $last_name,
-                'age' => $age,
-                'department_id' => $department,
+                'first_name' => $validated['f_name'],
+                'last_name'=> $validated['l_name'],
+                'age' => $validated['age'],
+                'department_id' => $validated['department']
             ]
             );
-        $student->subjects()->sync($subjects);
+        $student->subjects()->sync($validated['subjects']);
 
         return redirect()->route('students.index')->with('info', 'student updated successfully');
 
