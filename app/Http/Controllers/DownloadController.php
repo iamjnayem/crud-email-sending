@@ -12,12 +12,11 @@ class DownloadController extends Controller
 
     //    $file = Excel::store(new StudentExport,'/students.csv');
 
-       (new StudentExport)->queue('student.csv');
-
-       return back()->with('info', 'exporting has started...');
-
+       (new StudentExport)->store(time().'student.csv');
+    //    (new StudentExport)->queue(time().'student.csv');
 
 
+       return back()->with('info', 'Exporting started. An email will be sent with download link');
 
     }
 }
