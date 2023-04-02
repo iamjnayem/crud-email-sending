@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Student;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,10 +12,11 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class StudentExport implements ShouldAutoSize, WithMapping, WithHeadings, FromQuery, ShouldQueue
+class StudentExport implements ShouldAutoSize, WithMapping, WithHeadings, FromQuery
 {
 
     use Exportable;
+
 
     /**
      * @return \Illuminate\Support\Collection
@@ -38,6 +40,7 @@ class StudentExport implements ShouldAutoSize, WithMapping, WithHeadings, FromQu
 
     public function headings(): array
     {
+        Log::info($this->filePath);
         return [
             'Student_id',
             'First Name',
