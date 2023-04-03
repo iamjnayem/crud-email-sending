@@ -1,6 +1,9 @@
+
+
 <?php
 
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\FileDownloaderController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Models\Department;
@@ -25,11 +28,11 @@ Route::get('/', function () {
 });
 
 Route::get('/download', [DownloadController::class, 'downloadCsv'])->name('download');
+Route::get('/file_download/{file_name}', [FileDownloaderController::class, 'downloadFile'])->name('file_download');
 
 Route::get('/subjects/{department}', [SubjectController::class, 'allSubjects']);
 
 Route::resource('students', StudentController::class);
 
-Route::get('/test', function(){
-    return view('layout.welcome');
-});
+// Route::get('/file_download/{file_name}', [FileDownloaderController::class, 'downloadFile']);
+// http://localhost:8000/file_download/1680507547student.csv

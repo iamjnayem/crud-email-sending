@@ -140,37 +140,13 @@
                             <p style="margin: 0;">Please click the below link to download the file.</p>
                         </td>
                     </tr>
-                    {{-- <tr>
-                        <td bgcolor="#ffffff" align="left">
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                <tr>
-                                    <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
-                                        <table border="0" cellspacing="0" cellpadding="0">
-                                            <tr>
-                                                <td align="center" style="border-radius: 3px;" bgcolor="#FFA73B"><a
-                                                        href="#" target="_blank"
-                                                        style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #FFA73B; display: inline-block;">Confirm
-                                                        Account</a></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr> <!-- COPY --> --}}
-                    {{-- <tr>
-                        <td bgcolor="#ffffff" align="left"
-                            style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">If that doesn't work, copy and paste the following link in your
-                                browser:</p>
-                        </td>
-                    </tr> <!-- COPY --> --}}
+
                     <tr>
-                        {{$data['a']}}
+
                         <td bgcolor="#ffffff" align="left"
                             style="padding: 20px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;"><a href="#" target="_blank"
-                                    style="color: #FFA73B;"></a></p>
+                            <p style="margin: 0;"><a href="{{url($data['a'])}}" target="_blank"
+                                    style="color: #FFA73B;">{{$data['a']}}</a></p>
                         </td>
                     </tr>
                     <tr>

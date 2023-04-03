@@ -18,7 +18,7 @@ class StudentSubjectFactory extends Factory
     {
         return [
             'student_id' => self::$index++,
-            'subject_id' => rand(1, 10)
+            'subject_id' => rand(1, 10),
         ];
     }
 }

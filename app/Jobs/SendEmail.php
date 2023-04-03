@@ -18,6 +18,7 @@ class SendEmail implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $details;
+    protected $file_name;
 
 
     /**
@@ -25,10 +26,10 @@ class SendEmail implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct($details, $file_name)
     {
         $this->details = $details;
-
+        $this->file_name = $file_name;
 
     }
 
@@ -40,7 +41,7 @@ class SendEmail implements ShouldQueue
     public function handle()
     {
         try{
-            $email = new EmailForQueuing();
+            $email = new EmailForQueuing($this->file_name);
             Mail::to($this->details['email'])->send($email);
         }catch(Exception $e){
             Log::error($e->getMessage());

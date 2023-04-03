@@ -40,7 +40,6 @@ class StudentExport implements ShouldAutoSize, WithMapping, WithHeadings, FromQu
 
     public function headings(): array
     {
-        Log::info($this->filePath);
         return [
             'Student_id',
             'First Name',
