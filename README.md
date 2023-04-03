@@ -42,9 +42,10 @@
 7. create a local database with same name
 8. type  `composer install` in terminal
 9. type  `php artisan key:generate`
-9. type  `php artisan migrate` in terminal
-7. type `php artisan db:seed` in terminal
-8. type `php artisan serve` in terminal
+10. type  `php artisan migrate` in terminal
+11. type `php artisan db:seed` in terminal
+12. type `php artisan serve` in terminal
+13. type `php artisan queue:listen --tries=20`
 
 
 # How I can improve the project?
